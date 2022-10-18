@@ -1,0 +1,25 @@
+{
+  "name": "tree-sitter-twitchspawnlanguage",
+  "version": "1.0.0",
+  "description": "A Tree-sitter parser for the TwitchSpawn Language",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Munkybooty/tree-sitter-twitchspawnlanguage.git"
+  },
+  "author": "Munkybooty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Munkybooty/tree-sitter-twitchspawnlanguage/issues"
+  },
+  "homepage": "https://github.com/Munkybooty/tree-sitter-twitchspawnlanguage#readme",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.7"
+  }
+}
