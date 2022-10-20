@@ -35,6 +35,49 @@ module.exports = grammar({
       $.predicate,
     )),
 
+    action: $ => choice(
+      'DROP',
+      'SUMMON',
+      'EXECUTE',
+      'THROW',
+      'CLEAR',
+      'SHUFFLE',
+      'CHANGE',
+    ),
+
+    meta_action: $ => choice(
+      'EITHER',
+      'BOTH',
+      'NOTHING',
+      seq('FOR', /\d+/, 'TIMES'),
+      'WAIT',
+      'REFLECT',
+    ),
+
+    event: $ => choice(
+      'Donation',
+      'JustGiving Donation',
+      'ExtraLife Donation',
+      'Patreon Pledge',
+      'Tiltify Donation',
+      'TreatStream Treat',
+      'Loyalty Point Redemption',
+      'Twitch Channel Point Reward',
+      'Twitch Chat Message',
+      'Twitch Follow',
+      'Twitch Subscription Gift',
+      'Twitch Subscription',
+      'Twitch Host',
+      'Twitch Raid',
+      'Twitch Bits',
+      'Youtube Subscription',
+      'Youtube Sponsor',
+      'Youtube Superchat',
+      'Mixer Follow',
+      'Mixer Subscription',
+      'Mixer Host'
+    ),
+
     comment: $ => token(seq('#', /.*/)),
 
   }
