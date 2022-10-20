@@ -30,8 +30,9 @@ module.exports = grammar({
 
     rule: $ => repeat(choice(
       $.action,
-      $.comparator
+      $.comparator,
       $.event,
+      $.predicate,
     )),
 
     comment: $ => token(seq('#', /.*/)),
