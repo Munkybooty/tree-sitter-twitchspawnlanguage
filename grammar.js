@@ -84,6 +84,20 @@ module.exports = grammar({
       'Mixer Host'
     ),
 
+    predicate: $ => choice(
+      'actor',
+      choice('amount','donation_amount'),
+      choice('badges', 'chat_badges'),
+      choice('currency','donation_currency'),
+      'gifted',
+      'message',
+      choice('months', 'month_count',  'subscription_months'),
+      choice('raiders', 'raider_count'),
+      choice('tier', 'subscription_tier'),
+      'title',
+      choice('viewers', 'viewer_count'),
+    ),
+
     comment: $ => token(seq('#', /.*/)),
 
   }
