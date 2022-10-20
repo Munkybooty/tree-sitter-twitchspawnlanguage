@@ -12,8 +12,7 @@ module.exports = grammar({
       $._indent,
       $.comment,
 
-      // Allow the external scanner to check for the validity of closing brackets
-      // so that it can avoid returning dedent tokens between brackets.
+      // Allow the external scanner to check for the validity of closing brackets.
       ']',
       '}',
     ],
