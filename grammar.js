@@ -5,6 +5,7 @@ module.exports = grammar({
 
     extras: $ => [
       $.comment,
+      $.comparator,
     ],
 
     externals: $ => [
