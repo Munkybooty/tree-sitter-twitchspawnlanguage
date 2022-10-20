@@ -1,11 +1,342 @@
 [
   {
-    "type": "source_file",
+    "type": "action",
     "named": true,
     "fields": {}
   },
   {
-    "type": "hello",
+    "type": "action_parameters",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comparator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "event",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "meta_action",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "meta_action_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "meta_action",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "predicate",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "predicate_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "action",
+          "named": true
+        },
+        {
+          "type": "action_parameters",
+          "named": true
+        },
+        {
+          "type": "comparator",
+          "named": true
+        },
+        {
+          "type": "event",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "predicate_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ruleset",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "meta_action_rule",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BOTH",
+    "named": false
+  },
+  {
+    "type": "CHANGE",
+    "named": false
+  },
+  {
+    "type": "CLEAR",
+    "named": false
+  },
+  {
+    "type": "DROP",
+    "named": false
+  },
+  {
+    "type": "Donation",
+    "named": false
+  },
+  {
+    "type": "EITHER",
+    "named": false
+  },
+  {
+    "type": "EXECUTE",
+    "named": false
+  },
+  {
+    "type": "ExtraLife Donation",
+    "named": false
+  },
+  {
+    "type": "FOR",
+    "named": false
+  },
+  {
+    "type": "JustGiving Donation",
+    "named": false
+  },
+  {
+    "type": "Loyalty Point Redemption",
+    "named": false
+  },
+  {
+    "type": "Mixer Follow",
+    "named": false
+  },
+  {
+    "type": "Mixer Host",
+    "named": false
+  },
+  {
+    "type": "Mixer Subscription",
+    "named": false
+  },
+  {
+    "type": "NOTHING",
+    "named": false
+  },
+  {
+    "type": "ON",
+    "named": false
+  },
+  {
+    "type": "Patreon Pledge",
+    "named": false
+  },
+  {
+    "type": "REFLECT",
+    "named": false
+  },
+  {
+    "type": "SHUFFLE",
+    "named": false
+  },
+  {
+    "type": "SUMMON",
+    "named": false
+  },
+  {
+    "type": "THROW",
+    "named": false
+  },
+  {
+    "type": "TIMES",
+    "named": false
+  },
+  {
+    "type": "Tiltify Donation",
+    "named": false
+  },
+  {
+    "type": "TreatStream Treat",
+    "named": false
+  },
+  {
+    "type": "Twitch Bits",
+    "named": false
+  },
+  {
+    "type": "Twitch Channel Point Reward",
+    "named": false
+  },
+  {
+    "type": "Twitch Chat Message",
+    "named": false
+  },
+  {
+    "type": "Twitch Follow",
+    "named": false
+  },
+  {
+    "type": "Twitch Host",
+    "named": false
+  },
+  {
+    "type": "Twitch Raid",
+    "named": false
+  },
+  {
+    "type": "Twitch Subscription",
+    "named": false
+  },
+  {
+    "type": "Twitch Subscription Gift",
+    "named": false
+  },
+  {
+    "type": "WAIT",
+    "named": false
+  },
+  {
+    "type": "WITH",
+    "named": false
+  },
+  {
+    "type": "Youtube Sponsor",
+    "named": false
+  },
+  {
+    "type": "Youtube Subscription",
+    "named": false
+  },
+  {
+    "type": "Youtube Superchat",
+    "named": false
+  },
+  {
+    "type": "actor",
+    "named": false
+  },
+  {
+    "type": "amount",
+    "named": false
+  },
+  {
+    "type": "badges",
+    "named": false
+  },
+  {
+    "type": "chat_badges",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "currency",
+    "named": false
+  },
+  {
+    "type": "donation_amount",
+    "named": false
+  },
+  {
+    "type": "donation_currency",
+    "named": false
+  },
+  {
+    "type": "gifted",
+    "named": false
+  },
+  {
+    "type": "message",
+    "named": false
+  },
+  {
+    "type": "month_count",
+    "named": false
+  },
+  {
+    "type": "months",
+    "named": false
+  },
+  {
+    "type": "need to do",
+    "named": false
+  },
+  {
+    "type": "raider_count",
+    "named": false
+  },
+  {
+    "type": "raiders",
+    "named": false
+  },
+  {
+    "type": "subscription_months",
+    "named": false
+  },
+  {
+    "type": "subscription_tier",
+    "named": false
+  },
+  {
+    "type": "tier",
+    "named": false
+  },
+  {
+    "type": "title",
+    "named": false
+  },
+  {
+    "type": "viewer_count",
+    "named": false
+  },
+  {
+    "type": "viewers",
     "named": false
   }
 ]

@@ -1,20 +1,431 @@
 {
   "name": "twitchspawnlanguage",
   "rules": {
-    "source_file": {
+    "ruleset": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "meta_action_rule"
+          }
+        ]
+      }
+    },
+    "meta_action_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "meta_action"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rule"
+        }
+      ]
+    },
+    "rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "action"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "action_parameters"
+        },
+        {
+          "type": "STRING",
+          "value": "ON"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "event"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "WITH"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "predicate"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "comparator"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "predicate_value"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DROP"
+        },
+        {
+          "type": "STRING",
+          "value": "SUMMON"
+        },
+        {
+          "type": "STRING",
+          "value": "EXECUTE"
+        },
+        {
+          "type": "STRING",
+          "value": "THROW"
+        },
+        {
+          "type": "STRING",
+          "value": "CLEAR"
+        },
+        {
+          "type": "STRING",
+          "value": "SHUFFLE"
+        },
+        {
+          "type": "STRING",
+          "value": "CHANGE"
+        }
+      ]
+    },
+    "meta_action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "EITHER"
+        },
+        {
+          "type": "STRING",
+          "value": "BOTH"
+        },
+        {
+          "type": "STRING",
+          "value": "NOTHING"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "FOR"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\d+"
+            },
+            {
+              "type": "STRING",
+              "value": "TIMES"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "WAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "REFLECT"
+        }
+      ]
+    },
+    "event": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Donation"
+        },
+        {
+          "type": "STRING",
+          "value": "JustGiving Donation"
+        },
+        {
+          "type": "STRING",
+          "value": "ExtraLife Donation"
+        },
+        {
+          "type": "STRING",
+          "value": "Patreon Pledge"
+        },
+        {
+          "type": "STRING",
+          "value": "Tiltify Donation"
+        },
+        {
+          "type": "STRING",
+          "value": "TreatStream Treat"
+        },
+        {
+          "type": "STRING",
+          "value": "Loyalty Point Redemption"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Channel Point Reward"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Chat Message"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Follow"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Subscription Gift"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Subscription"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Host"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Raid"
+        },
+        {
+          "type": "STRING",
+          "value": "Twitch Bits"
+        },
+        {
+          "type": "STRING",
+          "value": "Youtube Subscription"
+        },
+        {
+          "type": "STRING",
+          "value": "Youtube Sponsor"
+        },
+        {
+          "type": "STRING",
+          "value": "Youtube Superchat"
+        },
+        {
+          "type": "STRING",
+          "value": "Mixer Follow"
+        },
+        {
+          "type": "STRING",
+          "value": "Mixer Subscription"
+        },
+        {
+          "type": "STRING",
+          "value": "Mixer Host"
+        }
+      ]
+    },
+    "predicate": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "actor"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "amount"
+            },
+            {
+              "type": "STRING",
+              "value": "donation_amount"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "badges"
+            },
+            {
+              "type": "STRING",
+              "value": "chat_badges"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "currency"
+            },
+            {
+              "type": "STRING",
+              "value": "donation_currency"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "gifted"
+        },
+        {
+          "type": "STRING",
+          "value": "message"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "months"
+            },
+            {
+              "type": "STRING",
+              "value": "month_count"
+            },
+            {
+              "type": "STRING",
+              "value": "subscription_months"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "raiders"
+            },
+            {
+              "type": "STRING",
+              "value": "raider_count"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "tier"
+            },
+            {
+              "type": "STRING",
+              "value": "subscription_tier"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "title"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "viewers"
+            },
+            {
+              "type": "STRING",
+              "value": "viewer_count"
+            }
+          ]
+        }
+      ]
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
+    },
+    "action_parameters": {
       "type": "STRING",
-      "value": "hello"
+      "value": "need to do"
+    },
+    "comparator": {
+      "type": "STRING",
+      "value": "need to do"
+    },
+    "predicate_value": {
+      "type": "STRING",
+      "value": "need to do"
     }
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comparator"
     }
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_newline"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_indent"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
+      "type": "STRING",
+      "value": "]"
+    },
+    {
+      "type": "STRING",
+      "value": "}"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }
