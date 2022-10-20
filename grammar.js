@@ -18,11 +18,14 @@ module.exports = grammar({
       '}',
     ],
 
-    // TODO: add the actual grammar rules
     ruleset: $ => repeat(choice(
       $.rule,
       $.meta_action_rule,
-      $.advanced_action_rule,
+    )),
+
+    meta_action_rule: $ => seq(
+      $.meta_action,
+      $.rule,
     )),
 
     rule: $ => repeat(choice(
