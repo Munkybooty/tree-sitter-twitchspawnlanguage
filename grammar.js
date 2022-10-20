@@ -1,22 +1,22 @@
 module.exports = grammar({
   name: 'twitchspawnlanguage',
 
+  extras: $ => [
+    $.comment,
+    $.comparator,
+  ],
+
+  externals: $ => [
+    $._newline,
+    $._indent,
+    $.comment,
+
+    // Allow the external scanner to check for the validity of closing brackets.
+    ']',
+    '}',
+  ],
+
   rules: {
-
-    extras: $ => [
-      $.comment,
-      $.comparator,
-    ],
-
-    externals: $ => [
-      $._newline,
-      $._indent,
-      $.comment,
-
-      // Allow the external scanner to check for the validity of closing brackets.
-      ']',
-      '}',
-    ],
 
     ruleset: $ => repeat(choice(
       $.rule,
