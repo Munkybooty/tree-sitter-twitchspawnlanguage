@@ -26,7 +26,7 @@ module.exports = grammar({
     meta_action_rule: $ => seq(
       $.meta_action,
       $.rule,
-    )),
+    ),
 
     rule: $ => seq(
       $.action,
@@ -39,7 +39,7 @@ module.exports = grammar({
         $.comparator,
         $.predicate_value,
       ))),
-    )),
+    ),
 
     action: $ => choice(
       'DROP',
