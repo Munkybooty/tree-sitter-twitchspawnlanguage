@@ -28,11 +28,17 @@ module.exports = grammar({
       $.rule,
     )),
 
-    rule: $ => repeat(choice(
+    rule: $ => seq(
       $.action,
-      $.comparator,
+      $.action_parameters,
+      'ON',
       $.event,
-      $.predicate,
+      optional(repeat(seq(
+        'WITH',
+        $.predicate,
+        $.comparator,
+        $.predicate_value,
+      ))),
     )),
 
     action: $ => choice(
