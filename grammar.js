@@ -100,6 +100,11 @@ module.exports = grammar({
 
     comment: $ => token(seq('#', /.*/)),
 
-  }
+    action_parameters: $ => 'need to do',
 
+    comparator: $ => 'need to do',
+
+    predicate_value: $ => 'need to do',
+
+  }
 });
