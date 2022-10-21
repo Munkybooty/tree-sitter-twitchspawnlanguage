@@ -19,7 +19,13 @@ module.exports = grammar({
   rules: {
 
     ruleset: $ => repeat(choice(
-      $.rule,
+      $.drop_rule,
+      $.summon_rule,
+      $.execute_rule,
+      $.throw_rule,
+      $.clear_rule,
+      $.shuffle_rule,
+      $.change_rule,
       $.meta_action_rule,
     )),
 
@@ -28,28 +34,65 @@ module.exports = grammar({
       $.rule,
     ),
 
-    rule: $ => seq(
-      $.action,
-      $.action_parameters,
-      'ON',
-      $.event,
-      optional(repeat(seq(
-        'WITH',
-        $.predicate,
-        $.comparator,
-        $.predicate_value,
-      ))),
+    drop_rule: $ => seq(
+      'DROP',
+      $.item,
+      optional(/\d+/),
+      optional($.display_text),
     ),
 
-    action: $ => choice(
-      'DROP',
+    summon_rule: $ => seq(
       'SUMMON',
-      'EXECUTE',
-      'THROW',
-      'CLEAR',
-      'SHUFFLE',
-      'CHANGE',
+      $.entity,
+      optional($.coordinates),
+      optional($.nbt_data),
+      optional($.display_text),
     ),
+
+    execute_rule: $ => seq(
+      'EXECUTE',
+      repeat($.command),
+      optional($.display_text),
+    ),
+
+    throw_rule: $ => seq(
+      'THROW',
+      $.slot_val,
+      optional($.display_text),
+    ),
+
+    clear_rule: $ => seq(
+      'CLEAR',
+      $.slot_val,
+      optional($.display_text),
+    ),
+
+    shuffle_rule: $ => seq(
+      'SHUFFLE',
+      choice($.inventory_name, $.slot_group),
+      optional($.display_text),
+    ),
+
+    change_rule: $ => seq(
+      'CHANGE',
+      $.slot_val,
+      'INTO',
+      $.item,
+      optional($.display_text),
+    ),
+
+    // rule: $ => seq(
+    //   $.action,
+    //   $.action_parameters,
+    //   'ON',
+    //   $.event,
+    //   optional(repeat(seq(
+    //     'WITH',
+    //     $.predicate,
+    //     $.comparator,
+    //     $.predicate_value,
+    //   ))),
+    // ),
 
     meta_action: $ => choice(
       'EITHER',
