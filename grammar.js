@@ -145,7 +145,18 @@ module.exports = grammar({
 
     action_parameters: $ => 'need to do',
 
-    comparator: $ => 'need to do',
+    comparator: $ => choice(
+      '=',
+      '>',
+      '<',
+      '>=',
+      '<=',
+      'IS',
+      'PREFIX',
+      'POSTFIX',
+      'IN RANGE',
+      'CONTAINS',
+    ),
 
     predicate_value: $ => 'need to do',
 
