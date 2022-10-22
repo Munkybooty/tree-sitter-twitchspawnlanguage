@@ -234,7 +234,23 @@ module.exports = grammar({
 
     // Display Text
 
-    display_text: $ => 'need to do',
+    display_text: $ => seq(
+      'DISPLAYING',
+      '%[',
+      repeat(choice(
+        /\{\w+:(.*)\}/,
+        seq(
+          '\"',
+          repeat(choice(
+            seq('${',$.predicate,'}'),
+            /\w+/,
+            /[\!\?\.\']+/,
+          )),
+          '\"',
+        ),
+      )),
+      ']',
+    ),
 
   }
 });
