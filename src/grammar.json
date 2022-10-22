@@ -8,7 +8,31 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "rule"
+            "name": "drop_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "summon_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "execute_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "throw_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "clear_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "shuffle_rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "change_rule"
           },
           {
             "type": "SYMBOL",
@@ -23,10 +47,484 @@
         {
           "type": "SYMBOL",
           "name": "meta_action"
+        }
+      ]
+    },
+    "drop_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DROP"
         },
         {
           "type": "SYMBOL",
-          "name": "rule"
+          "name": "item"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "\\d+"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "summon_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SUMMON"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "entity"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "coordinates"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "nbt_data"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "execute_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "EXECUTE"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "command"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "throw_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "THROW"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slot_val"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "clear_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "CLEAR"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slot_val"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "shuffle_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "SHUFFLE"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inventory_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "slot_group"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "change_rule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "CHANGE"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slot_val"
+        },
+        {
+          "type": "STRING",
+          "value": "INTO"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "item"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "display_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "item_id"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt_item"
+        }
+      ]
+    },
+    "item_id": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "minecraft:[a-z_]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z_]+"
+        }
+      ]
+    },
+    "nbt_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "%minecraft:[a-z_]+\\{.*\\}%"
+        },
+        {
+          "type": "PATTERN",
+          "value": "%[a-zA-Z_]+\\{.*\\}%"
+        }
+      ]
+    },
+    "entity": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "minecraft:[a-z_]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z_]+"
+        }
+      ]
+    },
+    "coordinates": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "coordinate_val"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "coordinate_val"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "coordinate_val"
+        }
+      ]
+    },
+    "coordinate_val": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "-\\d+"
+        },
+        {
+          "type": "STRING",
+          "value": "~"
+        },
+        {
+          "type": "PATTERN",
+          "value": "~\\d+"
+        }
+      ]
+    },
+    "nbt_data": {
+      "type": "STRING",
+      "value": "need to do"
+    },
+    "command": {
+      "type": "PATTERN",
+      "value": "%\\/[\\w+]+(.*)%"
+    },
+    "slot_val": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "slot_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modified_selection"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "inventory_name"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "slot_num"
+            },
+            {
+              "type": "STRING",
+              "value": "FROM"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "inventory_name"
+            }
+          ]
+        }
+      ]
+    },
+    "modified_selection": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "modifier"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "modifier"
+            },
+            {
+              "type": "STRING",
+              "value": "FROM"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "inventory_name"
+            }
+          ]
+        }
+      ]
+    },
+    "slot_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "helmet"
+        },
+        {
+          "type": "STRING",
+          "value": "chestplate"
+        },
+        {
+          "type": "STRING",
+          "value": "leggings"
+        },
+        {
+          "type": "STRING",
+          "value": "boots"
+        },
+        {
+          "type": "STRING",
+          "value": "off-hand"
+        },
+        {
+          "type": "STRING",
+          "value": "main-hand"
+        }
+      ]
+    },
+    "inventory_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "inventory"
+        },
+        {
+          "type": "STRING",
+          "value": "armors"
+        },
+        {
+          "type": "STRING",
+          "value": "hotbar"
+        }
+      ]
+    },
+    "modifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "randomly"
+        },
+        {
+          "type": "STRING",
+          "value": "everything"
+        }
+      ]
+    },
+    "slot_num": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "slot"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]|[1-3][0-9]"
+        }
+      ]
+    },
+    "slot_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "slot"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]|[1-3][0-9]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]|[1-3][0-9]"
         }
       ]
     },
@@ -34,12 +532,66 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "action"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "drop_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "summon_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "execute_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "throw_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "clear_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "shuffle_rule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "change_rule"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "action_parameters"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "item"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "entity"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "coordinates"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "command"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "inventory_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "slot_group"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -80,39 +632,6 @@
               "type": "BLANK"
             }
           ]
-        }
-      ]
-    },
-    "action": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "DROP"
-        },
-        {
-          "type": "STRING",
-          "value": "SUMMON"
-        },
-        {
-          "type": "STRING",
-          "value": "EXECUTE"
-        },
-        {
-          "type": "STRING",
-          "value": "THROW"
-        },
-        {
-          "type": "STRING",
-          "value": "CLEAR"
-        },
-        {
-          "type": "STRING",
-          "value": "SHUFFLE"
-        },
-        {
-          "type": "STRING",
-          "value": "CHANGE"
         }
       ]
     },
@@ -379,17 +898,129 @@
         ]
       }
     },
-    "action_parameters": {
-      "type": "STRING",
-      "value": "need to do"
-    },
     "comparator": {
-      "type": "STRING",
-      "value": "need to do"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": "IS"
+        },
+        {
+          "type": "STRING",
+          "value": "PREFIX"
+        },
+        {
+          "type": "STRING",
+          "value": "POSTFIX"
+        },
+        {
+          "type": "STRING",
+          "value": "IN RANGE"
+        },
+        {
+          "type": "STRING",
+          "value": "CONTAINS"
+        }
+      ]
     },
     "predicate_value": {
       "type": "STRING",
       "value": "need to do"
+    },
+    "display_text": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DISPLAYING"
+        },
+        {
+          "type": "STRING",
+          "value": "%["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\{\\w+:(.*)\\}"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "\""
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "${"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "predicate"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "\\w+"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[\\!\\?\\.\\']+"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\""
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     }
   },
   "extras": [

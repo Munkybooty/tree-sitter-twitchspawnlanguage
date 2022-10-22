@@ -1,13 +1,45 @@
 [
   {
-    "type": "action",
+    "type": "change_rule",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "item",
+          "named": true
+        },
+        {
+          "type": "slot_val",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "action_parameters",
+    "type": "clear_rule",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "slot_val",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "comparator",
@@ -15,7 +47,114 @@
     "fields": {}
   },
   {
+    "type": "coordinate_val",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "coordinates",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "coordinate_val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "display_text",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "drop_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "entity",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "event",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "execute_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "display_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inventory_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "item_id",
+          "named": true
+        },
+        {
+          "type": "nbt_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "item_id",
     "named": true,
     "fields": {}
   },
@@ -29,19 +168,49 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "meta_action",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modified_selection",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inventory_name",
+          "named": true
         },
         {
-          "type": "rule",
+          "type": "modifier",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "nbt_data",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "nbt_item",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "predicate",
@@ -54,41 +223,6 @@
     "fields": {}
   },
   {
-    "type": "rule",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "action",
-          "named": true
-        },
-        {
-          "type": "action_parameters",
-          "named": true
-        },
-        {
-          "type": "comparator",
-          "named": true
-        },
-        {
-          "type": "event",
-          "named": true
-        },
-        {
-          "type": "predicate",
-          "named": true
-        },
-        {
-          "type": "predicate_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "ruleset",
     "named": true,
     "fields": {},
@@ -97,15 +231,182 @@
       "required": false,
       "types": [
         {
+          "type": "change_rule",
+          "named": true
+        },
+        {
+          "type": "clear_rule",
+          "named": true
+        },
+        {
+          "type": "drop_rule",
+          "named": true
+        },
+        {
+          "type": "execute_rule",
+          "named": true
+        },
+        {
           "type": "meta_action_rule",
           "named": true
         },
         {
-          "type": "rule",
+          "type": "shuffle_rule",
+          "named": true
+        },
+        {
+          "type": "summon_rule",
+          "named": true
+        },
+        {
+          "type": "throw_rule",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "shuffle_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "inventory_name",
+          "named": true
+        },
+        {
+          "type": "slot_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "slot_group",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "slot_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "slot_num",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "slot_val",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inventory_name",
+          "named": true
+        },
+        {
+          "type": "modified_selection",
+          "named": true
+        },
+        {
+          "type": "slot_name",
+          "named": true
+        },
+        {
+          "type": "slot_num",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "summon_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "coordinates",
+          "named": true
+        },
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "entity",
+          "named": true
+        },
+        {
+          "type": "nbt_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "throw_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "display_text",
+          "named": true
+        },
+        {
+          "type": "slot_val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "${",
+    "named": false
+  },
+  {
+    "type": "%[",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
   },
   {
     "type": "BOTH",
@@ -117,6 +418,14 @@
   },
   {
     "type": "CLEAR",
+    "named": false
+  },
+  {
+    "type": "CONTAINS",
+    "named": false
+  },
+  {
+    "type": "DISPLAYING",
     "named": false
   },
   {
@@ -141,6 +450,22 @@
   },
   {
     "type": "FOR",
+    "named": false
+  },
+  {
+    "type": "FROM",
+    "named": false
+  },
+  {
+    "type": "IN RANGE",
+    "named": false
+  },
+  {
+    "type": "INTO",
+    "named": false
+  },
+  {
+    "type": "IS",
     "named": false
   },
   {
@@ -169,6 +494,14 @@
   },
   {
     "type": "ON",
+    "named": false
+  },
+  {
+    "type": "POSTFIX",
+    "named": false
+  },
+  {
+    "type": "PREFIX",
     "named": false
   },
   {
@@ -256,6 +589,10 @@
     "named": false
   },
   {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "actor",
     "named": false
   },
@@ -264,12 +601,28 @@
     "named": false
   },
   {
+    "type": "armors",
+    "named": false
+  },
+  {
     "type": "badges",
+    "named": false
+  },
+  {
+    "type": "boots",
     "named": false
   },
   {
     "type": "chat_badges",
     "named": false
+  },
+  {
+    "type": "chestplate",
+    "named": false
+  },
+  {
+    "type": "command",
+    "named": true
   },
   {
     "type": "comment",
@@ -288,7 +641,31 @@
     "named": false
   },
   {
+    "type": "everything",
+    "named": false
+  },
+  {
     "type": "gifted",
+    "named": false
+  },
+  {
+    "type": "helmet",
+    "named": false
+  },
+  {
+    "type": "hotbar",
+    "named": false
+  },
+  {
+    "type": "inventory",
+    "named": false
+  },
+  {
+    "type": "leggings",
+    "named": false
+  },
+  {
+    "type": "main-hand",
     "named": false
   },
   {
@@ -308,11 +685,23 @@
     "named": false
   },
   {
+    "type": "off-hand",
+    "named": false
+  },
+  {
     "type": "raider_count",
     "named": false
   },
   {
     "type": "raiders",
+    "named": false
+  },
+  {
+    "type": "randomly",
+    "named": false
+  },
+  {
+    "type": "slot",
     "named": false
   },
   {
@@ -337,6 +726,14 @@
   },
   {
     "type": "viewers",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]
