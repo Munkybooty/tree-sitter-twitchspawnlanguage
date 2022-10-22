@@ -31,7 +31,7 @@ module.exports = grammar({
 
     meta_action_rule: $ => seq(
       $.meta_action,
-      $.rule,
+      // $.rule,
     ),
 
     // Basic Actions
@@ -153,18 +153,33 @@ module.exports = grammar({
 
     slot_group: $ => seq('slot', /[0-9]|[1-3][0-9]/, /[0-9]|[1-3][0-9]/),
 
-    // rule: $ => seq(
-    //   $.action,
-    //   $.action_parameters,
-    //   'ON',
-    //   $.event,
-    //   optional(repeat(seq(
-    //     'WITH',
-    //     $.predicate,
-    //     $.comparator,
-    //     $.predicate_value,
-    //   ))),
-    // ),
+    rule: $ => seq(
+      choice(
+        $.drop_rule,
+        $.summon_rule,
+        $.execute_rule,
+        $.throw_rule,
+        $.clear_rule,
+        $.shuffle_rule,
+        $.change_rule,
+      ),
+      choice(
+        $.item,
+        $.entity,
+        $.coordinates,
+        $.command,
+        $.inventory_name,
+        $.slot_group,
+      ),
+      'ON',
+      $.event,
+      optional(repeat(seq(
+        'WITH',
+        $.predicate,
+        $.comparator,
+        $.predicate_value,
+      ))),
+    ),
 
     // Meta Actions
 
