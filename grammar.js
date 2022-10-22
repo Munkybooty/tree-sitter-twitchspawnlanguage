@@ -34,6 +34,8 @@ module.exports = grammar({
       $.rule,
     ),
 
+    // Basic Actions
+
     drop_rule: $ => seq(
       'DROP',
       $.item,
@@ -81,6 +83,78 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
+    // Action Parameters
+
+    item: $ => choice(
+      $.item_id,
+      $.nbt_item,
+    ),
+
+    item_id: $ => choice(
+      /minecraft:[a-z_]+/,
+      /[a-zA-Z_]+/,
+    ),
+
+    nbt_item: $ => choice(
+      /%minecraft:[a-z_]+\{.*\}%/,
+      /%[a-zA-Z_]+\{.*\}%/
+    ),
+
+    entity: $ => choice(
+      /minecraft:[a-z_]/,
+      /[a-zA-Z_]+/,
+    ),
+
+    coordinates: $ => seq(
+      $.coordinate_val, // x-coordinate
+      $.coordinate_val, // y-coordinate
+      $.coordinate_val, // z-coordinate
+    ),
+
+    coordinate_val: $ => choice(/\d+/, /-\d+/, '~', /~\d+/),
+
+    nbt_data: $ => 'need to do',
+
+    command: $ => repeat(
+      /%\/.*%/
+    ),
+
+    slot_val: $ => choice(
+      $.slot_name,
+      $.modified_selection,
+      $.inventory_name,
+      seq($.slot_num, 'FROM', $.inventory_name),
+    ),
+
+    modified_selection: $ => choice(
+      $.modifier,
+      seq($.modifier, 'FROM', $.inventory_name),
+    ),
+
+    slot_name: $ => choice(
+      'helmet',
+      'chestplate',
+      'leggings',
+      'boots',
+      'off-hand',
+      'main-hand',
+    ),
+
+    inventory_name: $ => choice(
+      'inventory',
+      'armors',
+      'hotbar',
+    ),
+
+    modifier: $ => choice(
+      'randomly',
+      'everything'
+    ),
+
+    slot_num: $ => seq('slot', /[0-9]|[1-3][0-9]/),
+
+    slot_group: $ => seq('slot', /[0-9]|[1-3][0-9]/, /[0-9]|[1-3][0-9]/),
+
     // rule: $ => seq(
     //   $.action,
     //   $.action_parameters,
@@ -93,6 +167,8 @@ module.exports = grammar({
     //     $.predicate_value,
     //   ))),
     // ),
+
+    // Meta Actions
 
     meta_action: $ => choice(
       'EITHER',
@@ -158,66 +234,9 @@ module.exports = grammar({
 
     predicate_value: $ => 'need to do',
 
-    item: $ => choice(
-      $.item_id,
-      $.nbt_item,
-    ),
+    // Display Text
 
-    entity: $ => choice(
-      /minecraft:[a-z]+_[a-z]/,
-      /[a-z]+_[a-z]/,
-      /[a-zA-Z]+/
-    ),
-
-    coordinates: $ => seq(
-      $.coordinate_val, // x-coordinate
-      $.coordinate_val, // y-coordinate
-      $.coordinate_val, // z-coordinate
-    ),
-
-    coordinate_val: $ => choice(/\d+/, /-\d+/, '~', /~\d+/),
-
-    nbt_data: $ => 'need to do',
-
-    command: $ => repeat(
-      /%\/.*%/
-    ),
-
-    slot_val: $ => choice(
-      $.slot_name,
-      $.modified_selection,
-      $.inventory_name,
-      seq($.slot_num, 'FROM', $.inventory_name),
-    ),
-
-    modified_selection: $ => choice(
-      $.modifier,
-      seq($.modifier, 'FROM', $.inventory_name),
-    ),
-
-    slot_name: $ => choice(
-      'helmet',
-      'chestplate',
-      'leggings',
-      'boots',
-      'off-hand',
-      'main-hand',
-    ),
-
-    inventory_name: $ => choice(
-      'inventory',
-      'armors',
-      'hotbar',
-    ),
-
-    modifier: $ => choice(
-      'randomly',
-      'everything'
-    ),
-
-    slot_num: $ => seq('slot', /[0-9]|[1-3][0-9]/),
-
-    slot_group: $ => seq('slot', /[0-9]|[1-3][0-9]/, /[0-9]|[1-3][0-9]/),
+    display_text: $ => 'need to do',
 
   }
 });
