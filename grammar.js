@@ -115,9 +115,7 @@ module.exports = grammar({
 
     nbt_data: $ => 'need to do',
 
-    command: $ => repeat(
-      /%\/.*%/
-    ),
+    command: $ => (/%\/[\w+]+(.*)%/),
 
     slot_val: $ => choice(
       $.slot_name,
