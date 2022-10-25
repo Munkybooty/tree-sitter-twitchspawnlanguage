@@ -215,6 +215,10 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
+
+
+    // Events
+
     event: $ => choice(
       'Donation',
       'JustGiving Donation',
@@ -252,8 +256,6 @@ module.exports = grammar({
       'title',
       choice('viewers', 'viewer_count'),
     ),
-
-    comment: $ => token(seq('#', /.*/)),
 
     comparator: $ => choice(
       '=',
@@ -309,7 +311,11 @@ module.exports = grammar({
         ),
       )),
       ']%',
-    )
+    ),
+
+    // Comments
+
+    comment: $ => token(seq('#', /.*/)),
 
   }
 });
