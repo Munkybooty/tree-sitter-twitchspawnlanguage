@@ -183,6 +183,17 @@ module.exports = grammar({
 
     // Meta Actions
 
+    either_action: $ => seq(
+      'EITHER',
+      repeat(seq(
+        optional($.chance),
+        $.rule,
+        'OR'
+      )),
+      optional('ALL'),
+      $.display_text,
+    ),
+
     meta_action: $ => choice(
       'EITHER',
       'BOTH',
