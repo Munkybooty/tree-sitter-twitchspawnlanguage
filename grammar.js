@@ -184,7 +184,7 @@ module.exports = grammar({
       $.either_action,
       $.both_action,
       $.nothing_action,
-      seq('FOR', /\d+/, 'TIMES'),
+      $.for_action
       'WAIT',
       'REFLECT',
     ),
@@ -215,7 +215,11 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
-
+    for_action: => seq(
+      'FOR', /\d+/, 'TIMES',
+      $.action,
+      optional($.display_text),
+    ),
 
     // Events
 
