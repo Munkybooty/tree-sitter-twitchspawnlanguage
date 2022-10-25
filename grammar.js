@@ -88,6 +88,15 @@ module.exports = grammar({
 
     // Action Parameters
 
+    action_parameter: => choice(
+      $.item,
+      $.entity,
+      $.coordinates,
+      $.command,
+      $.inventory_name,
+      $.slot_group,
+    ),
+
     item: $ => choice(
       $.item_id,
       $.nbt_item,
@@ -158,14 +167,7 @@ module.exports = grammar({
 
     rule: $ => seq(
       $.action,
-      choice(
-        $.item,
-        $.entity,
-        $.coordinates,
-        $.command,
-        $.inventory_name,
-        $.slot_group,
-      ),
+      $.action_parameter,
       'ON',
       $.event,
       optional(repeat(seq(
