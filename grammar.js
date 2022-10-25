@@ -202,6 +202,7 @@ module.exports = grammar({
 
     both_action: => seq(
       'BOTH',
+      optional('INSTANTLY')
       repeat(seq(
         $.action,
         'AND'
