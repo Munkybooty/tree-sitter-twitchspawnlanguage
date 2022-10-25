@@ -245,7 +245,21 @@ module.exports = grammar({
       'CONTAINS',
     ),
 
-    predicate_value: $ => 'need to do',
+    predicate_value: $ => choice(
+      /\d+/,
+      $.boolean,
+      /%\w+%/,
+      /\w\w\w/,
+      seq(
+        '%',
+        repeat(choice(
+          /\w+/,
+          /[\!\?\.\']+/,
+        )),
+        '%'
+      ),
+      /\[\d+,\d+\]/
+    ),
 
     // Display Text
 
