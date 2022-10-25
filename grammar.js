@@ -180,6 +180,15 @@ module.exports = grammar({
 
     // Meta Actions
 
+    meta_action: $ => choice(
+      $.either_action,
+      $.both_action,
+      $.nothing_action,
+      seq('FOR', /\d+/, 'TIMES'),
+      'WAIT',
+      'REFLECT',
+    ),
+
     either_action: $ => seq(
       'EITHER',
       repeat(seq(
@@ -191,13 +200,8 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
-    meta_action: $ => choice(
-      'EITHER',
       'BOTH',
       'NOTHING',
-      seq('FOR', /\d+/, 'TIMES'),
-      'WAIT',
-      'REFLECT',
     ),
 
     event: $ => choice(
