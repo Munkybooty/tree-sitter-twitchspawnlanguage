@@ -200,7 +200,15 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
+    both_action: => seq(
       'BOTH',
+      repeat(seq(
+        $.action,
+        'AND'
+      )),
+      optional('ALL'),
+      optional($.display_text),
+    ),
       'NOTHING',
     ),
 
