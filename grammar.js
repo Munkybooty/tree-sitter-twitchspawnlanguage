@@ -209,7 +209,10 @@ module.exports = grammar({
       optional('ALL'),
       optional($.display_text),
     ),
+
+    nothing_action: => seq(
       'NOTHING',
+      optional($.display_text),
     ),
 
     event: $ => choice(
