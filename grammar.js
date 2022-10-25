@@ -182,7 +182,7 @@ module.exports = grammar({
       'EITHER',
       repeat(seq(
         optional($.chance),
-        $.rule,
+        $.action,
         'OR'
       )),
       optional('ALL'),
