@@ -273,6 +273,13 @@ module.exports = grammar({
 
     display_text: $ => seq(
       'DISPLAYING',
+      choice(
+        $.message,
+        'NOTHING',
+      )
+    ),
+
+    message: => seq(
       '%[',
       repeat(choice(
         /\{\w+:(.*)\}/,
@@ -286,8 +293,8 @@ module.exports = grammar({
           '\"',
         ),
       )),
-      ']',
-    ),
+      ']%',
+    )
 
   }
 });
