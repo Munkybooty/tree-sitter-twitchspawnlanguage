@@ -188,7 +188,7 @@ module.exports = grammar({
         'OR'
       )),
       optional('ALL'),
-      $.display_text,
+      optional($.display_text),
     ),
 
     meta_action: $ => choice(
