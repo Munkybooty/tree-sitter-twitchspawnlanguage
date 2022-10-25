@@ -184,8 +184,8 @@ module.exports = grammar({
       $.either_action,
       $.both_action,
       $.nothing_action,
-      $.for_action
-      'WAIT',
+      $.for_action,
+      $.wait_action,
       'REFLECT',
     ),
 
@@ -220,6 +220,19 @@ module.exports = grammar({
       'FOR', /\d+/, 'TIMES',
       $.action,
       optional($.display_text),
+    ),
+
+    wait_action: => seq(
+      'WAIT', /\d+/, $.time_unit,
+      optional($.display_text)
+    ),
+
+    // Meta Action Parameters
+
+    time_unit: => choice(
+      'milliseconds',
+      'seconds',
+      'minutes',
     ),
 
     // Events
