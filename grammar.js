@@ -19,13 +19,6 @@ module.exports = grammar({
   rules: {
 
     ruleset: $ => repeat(choice(
-      $.drop_rule,
-      $.summon_rule,
-      $.execute_rule,
-      $.throw_rule,
-      $.clear_rule,
-      $.shuffle_rule,
-      $.change_rule,
       $.meta_action_rule,
     )),
 
@@ -36,14 +29,24 @@ module.exports = grammar({
 
     // Basic Actions
 
-    drop_rule: $ => seq(
+    action: => choice(
+      $.drop_action,
+      $.summon_action,
+      $.execute_action,
+      $.throw_action,
+      $.clear_action,
+      $.shuffle_action,
+      $.change_action,
+    ),
+
+    drop_action: $ => seq(
       'DROP',
       $.item,
       optional(/\d+/),
       optional($.display_text),
     ),
 
-    summon_rule: $ => seq(
+    summon_action: $ => seq(
       'SUMMON',
       $.entity,
       optional($.coordinates),
@@ -51,31 +54,31 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
-    execute_rule: $ => seq(
+    execute_action: $ => seq(
       'EXECUTE',
       repeat($.command),
       optional($.display_text),
     ),
 
-    throw_rule: $ => seq(
+    throw_action: $ => seq(
       'THROW',
       $.slot_val,
       optional($.display_text),
     ),
 
-    clear_rule: $ => seq(
+    clear_action: $ => seq(
       'CLEAR',
       $.slot_val,
       optional($.display_text),
     ),
 
-    shuffle_rule: $ => seq(
+    shuffle_action: $ => seq(
       'SHUFFLE',
       choice($.inventory_name, $.slot_group),
       optional($.display_text),
     ),
 
-    change_rule: $ => seq(
+    change_action: $ => seq(
       'CHANGE',
       $.slot_val,
       'INTO',
@@ -154,15 +157,7 @@ module.exports = grammar({
     slot_group: $ => seq('slot', /[0-9]|[1-3][0-9]/, /[0-9]|[1-3][0-9]/),
 
     rule: $ => seq(
-      choice(
-        $.drop_rule,
-        $.summon_rule,
-        $.execute_rule,
-        $.throw_rule,
-        $.clear_rule,
-        $.shuffle_rule,
-        $.change_rule,
-      ),
+      $.action,
       choice(
         $.item,
         $.entity,
