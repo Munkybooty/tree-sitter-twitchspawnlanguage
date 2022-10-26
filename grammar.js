@@ -186,7 +186,7 @@ module.exports = grammar({
       $.nothing_action,
       $.for_action,
       $.wait_action,
-      'REFLECT',
+      $.reflect_action,
     ),
 
     either_action: $ => seq(
@@ -226,6 +226,14 @@ module.exports = grammar({
       'WAIT', /\d+/, $.time_unit,
       optional($.display_text)
     ),
+
+    reflect_action: => seq(
+      'REFLECT',
+      optional('ONLY'),
+      choice('*', /\d+/, /%\w+[,\s\w+]+%/,),
+      choice($.action, $.meta_action),
+      optional($.display_text),
+    )
 
     // Meta Action Parameters
 
