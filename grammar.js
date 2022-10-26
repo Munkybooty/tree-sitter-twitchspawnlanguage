@@ -316,6 +316,11 @@ module.exports = grammar({
       /\[\d+,\d+\]/
     ),
 
+    boolean: $ => choice(
+      'true',
+      'false',
+    ),
+
     // Display Text
 
     display_text: $ => seq(
