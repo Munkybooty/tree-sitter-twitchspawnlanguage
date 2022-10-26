@@ -29,7 +29,7 @@ module.exports = grammar({
 
     // Basic Actions
 
-    action: => choice(
+    action: $ => choice(
       $.drop_action,
       $.summon_action,
       $.execute_action,
@@ -88,7 +88,7 @@ module.exports = grammar({
 
     // Action Parameters
 
-    action_parameter: => choice(
+    action_parameter: $ => choice(
       $.item,
       $.entity,
       $.coordinates,
@@ -200,9 +200,9 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
-    both_action: => seq(
+    both_action: $ => seq(
       'BOTH',
-      optional('INSTANTLY')
+      optional('INSTANTLY'),
       repeat(seq(
         $.action,
         'AND'
@@ -211,33 +211,33 @@ module.exports = grammar({
       optional($.display_text),
     ),
 
-    nothing_action: => seq(
+    nothing_action: $ => seq(
       'NOTHING',
       optional($.display_text),
     ),
 
-    for_action: => seq(
+    for_action: $ => seq(
       'FOR', /\d+/, 'TIMES',
       $.action,
       optional($.display_text),
     ),
 
-    wait_action: => seq(
+    wait_action: $ => seq(
       'WAIT', /\d+/, $.time_unit,
       optional($.display_text)
     ),
 
-    reflect_action: => seq(
+    reflect_action: $ => seq(
       'REFLECT',
       optional('ONLY'),
       choice('*', /\d+/, /%\w+[,\s\w+]+%/,),
       choice($.action, $.meta_action),
       optional($.display_text),
-    )
+    ),
 
     // Meta Action Parameters
 
-    time_unit: => choice(
+    time_unit: $ => choice(
       'milliseconds',
       'seconds',
       'minutes',
@@ -319,10 +319,10 @@ module.exports = grammar({
       choice(
         $.message,
         'NOTHING',
-      )
+      ),
     ),
 
-    message: => seq(
+    message: $ => seq(
       '%[',
       repeat(choice(
         /\{\w+:(.*)\}/,
