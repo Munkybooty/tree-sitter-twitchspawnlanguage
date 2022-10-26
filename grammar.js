@@ -237,6 +237,10 @@ module.exports = grammar({
 
     // Meta Action Parameters
 
+    chance: $ => seq(
+      'CHANCE', /[\d+.]/, 'PERCENT'
+    ),
+
     time_unit: $ => choice(
       'milliseconds',
       'seconds',
