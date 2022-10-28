@@ -1,3 +1,10 @@
+// TODO: Make Proper Precedence
+const PREC = {
+  COMMENT: 0,
+  REFLECT: 1,
+  ACTION: 2,
+};
+
 module.exports = grammar({
   name: 'twitchspawnlanguage',
 
